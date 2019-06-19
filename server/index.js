@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 //Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 //data (not used for now)
@@ -14,7 +16,7 @@ app.get("/photos", (req, res) => {
   console.log("GET request");
 });
 
-//POST route
+//handling the POST route
 app.post("/query", (request, response) => {
   //API key (very secret :D
   const key = "t0dfYSC317xnIbjf5TguDANafmhCtnFSnLsdvldI";

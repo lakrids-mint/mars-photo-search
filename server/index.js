@@ -7,9 +7,6 @@ const axios = require("axios");
 app.use(cors());
 app.use(bodyParser.json());
 
-//data (not used for now)
-let photos = [];
-
 //GET Route (not used for now)
 app.get("/photos", (req, res) => {
   res.send("GET request");
@@ -18,52 +15,88 @@ app.get("/photos", (req, res) => {
 
 //handling the POST route
 app.post("/query", (request, response) => {
-  //API key (very secret :D
-  const key = "t0dfYSC317xnIbjf5TguDANafmhCtnFSnLsdvldI";
   console.log("POST request");
+  //API key (very secret :D
+  //const key = "DEMO_KEY";
+  const key = "gbbYee9i7MNthwTFhHQFkBssoC6XJrMUF4nz4l0M";
 
   const body = request.body;
+  const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${
+    body.sol
+  }&camera=${body.camera}&api_key=${key}`;
 
   console.log(
     "will now make API call with following search criteria: ",
+    "sol: ",
     body.sol,
+    "camera",
     body.camera
   );
   //Make API call
   axios
-    .get(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${
-        body.sol
-      }&camera=${body.camera}&api_key=${key}`
-    )
+    .get(url)
     //SEND TO CLIENT (works on postman but not in browser)
     .then(res => {
-      response.send("result");
-      console.log("printing results: ", res.data.photos);
-      console.log("printing config: ", res.config, res.status);
+      response.send(res.data);
+      console.log(
+        "printing config: ",
+        "url: ",
+        res.config.url,
+        "headerS: ",
+        res.config.headers,
+        "timeout: ",
+        res.config.timeout,
+        "data: ",
+        res.config.data,
+        "status: ",
+        res.status,
+        res.config
+      );
     })
     .catch(error => {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
+        console.log(
+          "*********************ERROR RESPONSE**********************************"
+        );
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
+        console.log(
+          "************************************************************"
+        );
       } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
+        console.log(
+          "**************************ERROR NO RESPONSE ***************************** "
+        );
         console.log(error.request);
+        console.log(
+          "*****************************************************************"
+        );
       } else {
+        console.log(
+          "*******************ERROR *********************************"
+        );
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
+        console.log(
+          "Error: Something happened in setting up the request that triggered an Error",
+          error.message
+        );
       }
+      console.log(
+        "****************ERROR CONFIG***********************************************"
+      );
       console.log(error.config);
+      console.log(
+        "****************ERROR END***********************************************"
+      );
     })
-    .finally(console.log("this is the end"));
+    .finally(console.log("api call has finished on the server"));
 });
 
 const PORT = 3001;
 app.listen(PORT, () => {
+  console.log(
+    "*********************************************************************************************************************************"
+  );
   console.log(`Server running on port ${PORT}`);
 });

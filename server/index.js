@@ -11,7 +11,8 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-const environment = require("dotenv").config();
+require("dotenv").config();
+var environment = process.env.NODE_ENV || "development";
 
 //Middleware
 app.use(cors());

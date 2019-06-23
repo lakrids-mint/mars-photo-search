@@ -1,12 +1,9 @@
 //TODO: deploy and hide API key!
-//TODO: pagination-> page	int	1	25 items per page returned
 
 //TODO: handle 0 results -> only show if button clicked
 //TODO: loading feature
 
-//TODO: set timeout
-
-//TODO: STYLE
+//TODO: STYLE - make pretty
 //TODO: make responsive
 
 const express = require("express");
@@ -14,19 +11,21 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const environment = require("dotenv").config();
 
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 //POST route
-app.post("/photos", (request, response) => {
+app.post("/api/photos", (request, response) => {
   //API key (very secret :D
+  //const key = process.env.VUE_APP_KEY;
   const key = "gbbYee9i7MNthwTFhHQFkBssoC6XJrMUF4nz4l0M";
   const body = request.body;
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${
     body.sol
-  }&camera=${body.camera}&page=1&api_key=${key}`;
+  }&camera=${body.camera}&api_key=${key}`;
   //half arsed diy validation
   let sol = parseInt(body.sol);
   console.log("is integer?", Number.isInteger(sol));
@@ -76,11 +75,17 @@ app.post("/photos", (request, response) => {
       .finally(console.log("code has reached finally statement"));
   }
 });
-
-const PORT = 3001;
+//Handle production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(__dirname + "/public/"));
+  //handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
+}
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(
-    "*********************************************************************************************************************************"
+    "****************************************************************************************************************"
   );
   console.log(`Server running on port ${PORT}`);
+  console.log(environment.NODE);
 });

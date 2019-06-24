@@ -1,8 +1,8 @@
-//TODO: push client to github
-//TODO: handle 0 results -> only show if button clicked
 //TODO: loading feature
-//TODO: make responsive
-//TODO: add page feature
+//TODO: make title responsive
+//TODO: add more photos feature
+//TODO: navcam display when chosen (2000 is beautiful btw)
+// to deploy run: $ git push heroku master
 
 const express = require("express");
 const app = express();

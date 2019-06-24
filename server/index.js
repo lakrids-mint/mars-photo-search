@@ -1,10 +1,8 @@
-//TODO: deploy and hide API key!
-
+//TODO: push client to github
 //TODO: handle 0 results -> only show if button clicked
 //TODO: loading feature
-
-//TODO: STYLE - make pretty
 //TODO: make responsive
+//TODO: add page feature
 
 const express = require("express");
 const app = express();
@@ -23,10 +21,11 @@ app.post("/api/photos", (request, response) => {
   //API key (very secret :D
   //const key = process.env.VUE_APP_KEY;
   const key = "gbbYee9i7MNthwTFhHQFkBssoC6XJrMUF4nz4l0M";
+  const page = 1;
   const body = request.body;
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${
     body.sol
-  }&camera=${body.camera}&api_key=${key}`;
+  }&camera=${body.camera}&page=${page}&api_key=${key}`;
   //half arsed diy validation
   let sol = parseInt(body.sol);
   console.log("is integer?", Number.isInteger(sol));

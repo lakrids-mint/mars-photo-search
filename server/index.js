@@ -1,10 +1,10 @@
-//TODO: loading feature
-//TODO: make title responsive
-//TODO: add more photos feature
-//TODO: navcam display when chosen (2000 is beautiful btw)
-//TODO: media consumption bug
-//TODO: https images
-// to deploy run: $ git push heroku master
+//TODO: upload client code
+/* TO DEPLOY:
+  - npm run build
+  - commit and push to git
+  - log in to heroku
+  - git push heroku master
+*/
 
 const express = require("express");
 const app = express();

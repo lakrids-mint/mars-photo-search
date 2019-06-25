@@ -1,2 +1,4 @@
 node_modules
 client-ui/node_modules
+.firebase
+.env

@@ -1,4 +1,3 @@
-//TODO: upload client code
 /* TO DEPLOY:
   - npm run build
   - commit and push to git

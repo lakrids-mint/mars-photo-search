@@ -10,9 +10,15 @@
     <!-- results -->
 
     <v-layout row wrap mt-4>
-      <v-flex d-flex v-for="photo in photos" :key="photo.id" xs12 sm6>
+      <v-flex d-flex v-for="photo in photos" :key="photo.id" xs12 sm6 md4>
         <v-card class="mx-auto" color="grey lighten-4" min-width="200">
-          <v-img :aspect-ratio="1" :src="photo.img_src"></v-img>
+          <v-img :aspect-ratio="1" :src="photo.img_src">
+            <template v-slot:placeholder>
+              <v-layout fill-height align-center justify-center ma-0>
+                <v-progress-circular indeterminate color="pink"></v-progress-circular>
+              </v-layout>
+            </template>
+          </v-img>
           <v-card-text>
             <p class="subheading">
               Taken on:

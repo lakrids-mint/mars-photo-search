@@ -31,8 +31,7 @@ app.post("/api/photos", (request, response) => {
   let sol = parseInt(body.sol);
   console.log("is integer?", Number.isInteger(sol));
   if (!Number.isInteger(sol) || body.sol == "" || body.camera == undefined) {
-    console.log("validation not passed");
-    throw new Error("Validation failed");
+    throw new Error("Please enter valid values");
   } else {
     //Make API call
     axios

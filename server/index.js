@@ -2,8 +2,8 @@
 //TODO: add link route to individual images
 
 /* TO DEPLOY:
-  - npm run build
-  - commit and push to git
+  - client -> npm run build
+  - server -> commit and push to git
   - log in to heroku
   - git push heroku master
 */

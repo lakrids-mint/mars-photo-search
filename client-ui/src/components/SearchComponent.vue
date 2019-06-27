@@ -21,7 +21,7 @@
             name="sol"
           ></v-text-field>
         </v-flex>
-        <v-flex ma-1 xs12 sm6>
+        <v-flex ma-1 xs12>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
               <span v-on="on">Camera</span>

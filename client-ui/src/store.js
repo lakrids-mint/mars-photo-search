@@ -27,12 +27,11 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
+    //errorhandling
     error(context, errormessage) {
       context.commit("getError", errormessage);
     },
-    feedback(context, feedback) {
-      context.commit("getFeedback", feedback);
-    },
+    //API call
     getPhotos(context, query) {
       const request = axios.post("/api/photos", {
         sol: query.sol,
@@ -43,6 +42,7 @@ export const store = new Vuex.Store({
           context.commit("getPhotos", {
             photos: response.data.photos
           });
+          //tell user total number of photos
           context.commit(
             "getError",
             `${response.data.photos.length} photos matched your search criteria`

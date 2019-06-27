@@ -1,3 +1,6 @@
+//TODO: add pagination
+//TODO: add link route to individual images
+
 /* TO DEPLOY:
   - npm run build
   - commit and push to git
